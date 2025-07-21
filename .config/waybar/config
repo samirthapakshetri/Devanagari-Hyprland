@@ -21,7 +21,7 @@
         "hyprland/window"
     ],
     "modules-center": [
-        "group/notify",
+        "custom/swaync",
         "custom/separator#dot-line",
         "hyprland/workspaces#rw",
         "custom/separator#dot-line",
@@ -37,12 +37,12 @@
         "custom/separator#line",
         "group/audio",
         "custom/separator#dot-line",
-        "group/status"
+        "custom/power"
     ],
     "custom/arch": {
         "format": " ",
         "tooltip": false,
-        "on-click": "rofi -show drun"
+        "on-click": "rofi -show drun -show icons"
     },
     "custom/separator#dot-line": {
         "format": "",
@@ -71,7 +71,7 @@
         "format-alt-click": "click",
         "interval": 3600,
         "return-type": "json",
-        "exec": "$HOME/.config/hypr/UserScripts/Weather.py",
+        "exec": "$HOME/.config/hypr/scripts/weather.py",
         "tooltip": true
     },
     "custom/separator#blank_2": {
@@ -91,18 +91,6 @@
             "(.*) - zsh": "> [$1]",
             "(.*) - $term": "> [$1]"
         }
-    },
-    "group/notify": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 500,
-            "children-class": "custom/swaync",
-            "transition-left-to-right": false
-        },
-        "modules": [
-            "custom/swaync",
-            "custom/dot_update"
-        ]
     },
     "custom/swaync": {
         "tooltip": true,
@@ -124,12 +112,6 @@
         "on-click": "sleep 0.1 && swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
-    },
-    "custom/dot_update": {
-        "format": " 󰁈 ",
-        "on-click": "$HOME/.config/hypr/scripts/KooLsDotsUpdate.sh",
-        "tooltip": true,
-        "tooltip-format": "Check KooL Dots update\nIf available"
     },
     "hyprland/workspaces#rw": {
         "disable-scroll": true,
@@ -236,9 +218,7 @@
         ],
         "tooltip": true,
         "tooltip-format": "{timeTo} ({power}W)",
-        "exec": "$HOME/.config/waybar/scripts/batteryalert.sh",
-        "on-click-middle": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
-        "on-click-right": "$HOME/.config/hypr/scripts/Wlogout.sh"
+        "exec": "$HOME/.config/waybar/scripts/batteryalert.sh"
     },
     "group/mobo_drawer": {
         "orientation": "inherit",
@@ -267,8 +247,7 @@
         "format": "{temperatureC}°C {icon}",
         "format-icons": [
             "󰈸"
-        ],
-        "on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nvtop"
+        ]
     },
     "cpu": {
         "format": "{usage}% 󰍛",
@@ -278,8 +257,7 @@
         "format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
         "format-icons": [
             " ", "▂", "▃", "▄", "▅", "▆", "▇", "█"
-        ],
-        "on-click-right": "gnome-system-monitor"
+        ]
     },
     "power-profiles-daemon": {
         "format": "{icon} ",
@@ -298,8 +276,7 @@
         "format-alt": "{percentage}% 󰾆",
         "format-alt-click": "click",
         "tooltip": true,
-        "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
-        "on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --btop"
+        "tooltip-format": "{used:0.1f}GB/{total:0.1f}G"
     },
     "disk": {
         "interval": 30,
@@ -347,24 +324,9 @@
         "tooltip-format": "{source_desc} | {source_volume}%",
         "scroll-step": 5
     },
-    "group/status": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 500,
-            "children-class": "custom/power",
-            "transition-left-to-right": false
-        },
-        "modules": [
-            "custom/power",
-            "custom/lock",
-            "keyboard-state",
-            "custom/keyboard"
-        ]
-    },
     "custom/power": {
         "format": " ⏻ ",
         "on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
-        "on-click-right": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
         "tooltip": true,
         "tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur"
     },
@@ -373,21 +335,5 @@
         "on-click": "$HOME/.config/hypr/scripts/LockScreen.sh",
         "tooltip": true,
         "tooltip-format": "󰷛 Screen Lock"
-    },
-    "keyboard-state": {
-        "capslock": true,
-        "format": {
-            "capslock": "󰪛 {icon}"
-        },
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "custom/keyboard": {
-        "exec": "cat $HOME/.cache/kb_layout",
-        "interval": 1,
-        "format": " {}",
-        "on-click": "$HOME/.config/hypr/scripts/SwitchKeyboardLayout.sh"
     }
 }
