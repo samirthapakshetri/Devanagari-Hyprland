@@ -32,6 +32,7 @@
         "network#speed",
         "custom/separator#line",
         "battery",
+        "custom/lowbatteryalert",
         "custom/separator#dot-line",
         "group/mobo_drawer",
         "custom/separator#line",
@@ -59,7 +60,7 @@
         "tooltip": false
     },
     "custom/nepaliclock": {
-        "exec": "$HOME/.config/hypr/scripts/devanagari.sh \"%A  %d.%b.%Y - %H:%M\"",
+        "exec": "$HOME/.config/waybar/scripts/devanagari.sh \"%A  %d.%b.%Y - %H:%M\"",
         "interval": 60,
         "format": "{}",
         "format-alt": "{}",
@@ -71,7 +72,7 @@
         "format-alt-click": "click",
         "interval": 3600,
         "return-type": "json",
-        "exec": "$HOME/.config/hypr/scripts/weather.py",
+        "exec": "$HOME/.config/waybar/scripts/weather.py",
         "tooltip": true
     },
     "custom/separator#blank_2": {
@@ -160,8 +161,8 @@
         "on-click": "playerctl previous",
         "on-click-right": "playerctl next",
         "scroll-step": 5,
-        "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
-        "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+        "on-scroll-up": "$HOME/.config/waybar/scripts/Volume.sh --inc",
+        "on-scroll-down": "$HOME/.config/waybar/scripts/Volume.sh --dec",
         "smooth-scrolling-threshold": 1,
         "tooltip": true,
         "tooltip-format": "{status_icon} {dynamic}\nLeft Click: previous\nMid Click: Pause\nRight Click: Next",
@@ -177,14 +178,13 @@
         "max-length": 30
     },
     "network#speed": {
-        "exec": "$HOME/.config/hypr/scripts/devanagari.sh",
         "interval": 1,
         "format": "{ifname}",
         "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
         "format-ethernet": "󰌘  {bandwidthUpBytes}  {bandwidthDownBytes}",
         "format-disconnected": "󰌙",
         "tooltip-format": "{ipaddr}",
-        "format-linked": "󰈁 {ifname} (No IP)",
+        "format-linked": "󰈁 {ifname} (No IP)",  
         "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
         "tooltip-format-ethernet": "{ifname} 󰌘",
         "tooltip-format-disconnected": "󰌙 Disconnected",
@@ -217,8 +217,13 @@
             "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
         ],
         "tooltip": true,
-        "tooltip-format": "{timeTo} ({power}W)",
-        "exec": "$HOME/.config/waybar/scripts/batteryalert.sh"
+        "tooltip-format": "{timeTo} ({power}W)"
+    },
+    "custom/lowbatteryalert": {
+        "exec": "$HOME/.config/waybar/scripts/lowbatteryalert.sh",
+        "interval": 30,
+        "return-type": "plain",
+        "format": ""
     },
     "group/mobo_drawer": {
         "orientation": "inherit",
@@ -306,10 +311,10 @@
             ]
         },
         "scroll-step": 5,
-        "on-click": "$HOME/.config/hypr/scripts/Volume.sh --toggle",
+        "on-click": "$HOME/.config/waybar/scripts/Volume.sh --toggle",
         "on-click-right": "pavucontrol -t 3",
-        "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
-        "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+        "on-scroll-up": "$HOME/.config/waybar/scripts/Volume.sh --inc",
+        "on-scroll-down": "$HOME/.config/waybar/scripts/Volume.sh --dec",
         "tooltip-format": "{icon} {desc} | {volume}%",
         "smooth-scrolling-threshold": 1
     },
@@ -317,23 +322,17 @@
         "format": "{format_source}",
         "format-source": " {volume}%",
         "format-source-muted": "",
-        "on-click": "$HOME/.config/hypr/scripts/Volume.sh --toggle-mic",
+        "on-click": "$HOME/.config/waybar/scripts/Volume.sh --toggle-mic",
         "on-click-right": "pavucontrol -t 4",
-        "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --mic-inc",
-        "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --mic-dec",
+        "on-scroll-up": "$HOME/.config/waybar/scripts/Volume.sh --mic-inc",
+        "on-scroll-down": "$HOME/.config/waybar/scripts/Volume.sh --mic-dec",
         "tooltip-format": "{source_desc} | {source_volume}%",
         "scroll-step": 5
     },
     "custom/power": {
         "format": " ⏻ ",
-        "on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
+        "on-click": "$HOME/.config/waybar/scripts/Wlogout.sh",
         "tooltip": true,
-        "tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur"
-    },
-    "custom/lock": {
-        "format": "󰌾",
-        "on-click": "$HOME/.config/hypr/scripts/LockScreen.sh",
-        "tooltip": true,
-        "tooltip-format": "󰷛 Screen Lock"
+        "tooltip-format": ""
     }
 }
